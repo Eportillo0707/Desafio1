@@ -4,15 +4,16 @@ import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 
 public class MainFrame extends JFrame {
-    ArbolPacientes arbol;
+    ArbolPacientes arbol = new ArbolPacientes();
     DefaultMutableTreeNode rootNode;
     JTree tree;
     DefaultTreeModel treeModel;
     public MainFrame() {
-        arbol = new ArbolPacientes();
-        setTitle("Gestión de Pacientes");
-        setSize(400, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        super("Gestión de Pacientes");
+        setSize(600, 400); // Tamaño recomendado para formularios
+        setLocationRelativeTo(null); // Centra respecto a la pantalla
+        setResizable(false);//Evitar que el usuario redimensione
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Cierra solo esta ventana
         setLayout(new BorderLayout());
 
         JButton addPatientButton = new JButton("Agregar Paciente");
@@ -33,7 +34,7 @@ public class MainFrame extends JFrame {
 
     }
 
-    public void actulizarArbol() {
+    public void actualizarArbol() {
         rootNode.removeAllChildren();
         agregarNodos(arbol.raiz, rootNode);
         treeModel.reload();
